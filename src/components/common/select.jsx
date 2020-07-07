@@ -8,6 +8,7 @@ const Select = ({
   handleChangeFunction,
   error,
 }) => {
+  // SOME COMMENT
   return (
     <div className="form-group">
       <label htmlFor={name}>{label}</label>
