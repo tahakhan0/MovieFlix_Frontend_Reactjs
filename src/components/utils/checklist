@@ -1,0 +1,12 @@
+1) Add New movie button on the movies page
+2) When this button is clicked route to movies/New
+3) This page has a movie form with 4 fields
+    1) Title
+    2) Genre (a dropdown list)
+    3) Number in stock b/w 0 and 100
+    4) Rate b/w 0 and 10
+    5) Save Button, when it is clicked, the form
+       should save the movie in the list of movies
+4) When a movie title is clicked, it should 
+   redirect back (movies/id) and have a movie form
+   where the data is prefilled
