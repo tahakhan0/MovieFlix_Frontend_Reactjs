@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 const Searchbar = ({ name, value, onChange }) => {
   return (

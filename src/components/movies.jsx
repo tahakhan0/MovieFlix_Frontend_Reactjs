@@ -56,7 +56,6 @@ export class movies extends Component {
   };
 
   handleGenreSelect = (genre) => {
-    // console.log(genre, "genre");
     this.setState({ selectedGenre: genre, currentPage: 1 });
   };
 
@@ -72,7 +71,7 @@ export class movies extends Component {
       selectedGenre,
       searchQuery,
     } = this.state;
-    const { length: numOfMovies } = this.state.movies;
+    const { user } = this.props;
     if (allMovies.length === 0)
       return <p>There are no movies in the database</p>;
 
@@ -99,9 +98,11 @@ export class movies extends Component {
             />
           </div>
           <div className="col">
-            <Link to="/movies/new" className="btn btn-primary mb-2">
-              New movie
-            </Link>
+            {user && (
+              <Link to="/movies/new" className="btn btn-primary mb-2">
+                New movie
+              </Link>
+            )}
             <p>Showing {filteredMovies.length} movies in the database</p>
             <Searchbar
               value={searchQuery}
@@ -135,12 +136,14 @@ export class movies extends Component {
                       />
                     </td>
                     <td>
-                      <button
-                        onClick={() => this.handleDelete(movie.id)}
-                        className="btn btn-danger btn-sm"
-                      >
-                        Delete
-                      </button>
+                      {user && user.is_superuser && (
+                        <button
+                          onClick={() => this.handleDelete(movie.id)}
+                          className="btn btn-danger btn-sm"
+                        >
+                          Delete
+                        </button>
+                      )}
                     </td>
                   </tr>
                 ))}
@@ -160,27 +163,3 @@ export class movies extends Component {
 }
 
 export default movies;
-
-// state = {
-//   counter: [
-//     { id:1, value:2, selected:false},
-//     { id:2, value:3, selected:true}
-//     { id:3, value:4, selected:false}
-//   ]
-// }
-
-// Note here c is passed from a map function
-// Passing Props: <Counter id = {c.id} value={c.value}
-
-// We can modify it so that we don't need to change props everytime
-// <Counter c = {c}>
-
-// handleDelete = (id) => {
-//   const counter = this.state.counter.filter(c=> c.id !== id)
-//   // Copy all the previous counters except the counter with the given id
-//   this.setState(counter:counter)
-//   // Update the state
-// }
-
-// To use this function as a prop
-// <Counter onDelete = {this.handleDelete}

@@ -3,7 +3,6 @@ import React from "react";
 const Sidebar = (props) => {
   const {
     genreChoices,
-    valueProperty,
     textProperty,
     onGenreSelect,
     selectedGenretype,

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import Form from "../common/Form";
 import { getGenres } from "../../services/genreService";
 import Joi from "joi-browser";
@@ -52,20 +52,16 @@ class NewMovies extends Form {
   }
 
   mapToViewModel(movie) {
-    console.log(movie, "from new movies.jsx");
-    console.log(movie.genre, "movie.genre");
     return {
       id: movie.id,
       title: movie.title,
       numberInStock: movie.numberInStock,
       dailyRentalRate: movie.dailyRentalRate,
       genreId: movie.genre,
-      // genre: movie.genre,
     };
   }
 
   doSubmit = async () => {
-    // console.log(this.state.data, "FROM DOSUBMIT");
     await saveMovie(this.state.data);
     this.props.history.push("/movies");
   };

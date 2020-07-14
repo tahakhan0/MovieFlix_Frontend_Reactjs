@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React, { Fragment } from "react";
 import { NavLink } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({ user }) => {
   return (
     <nav className="navbar navbar-expand-sm navbar-light bg-light">
       <a className="navbar-brand">MovieFlix</a>
@@ -17,7 +17,7 @@ const Navbar = () => {
         <span className="navbar-toggler-icon"></span>
       </button>
       <div className="collapse navbar-collapse" id="navbarNav">
-        <ul className="navbar-nav">
+        <ul className="navbar-nav mr-auto">
           <li className="nav-item">
             <NavLink to="/movies" className="nav-link">
               Movies
@@ -33,16 +33,37 @@ const Navbar = () => {
               Rentals
             </NavLink>
           </li>
-          <li className="nav-item">
-            <NavLink to="/login" className="nav-link">
-              Login
-            </NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink to="/register" className="nav-link">
-              Register
-            </NavLink>
-          </li>
+
+          {!user && (
+            <Fragment>
+              <li className="nav-item">
+                <NavLink to="/login" className="nav-link">
+                  Login
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink to="/register" className="nav-link">
+                  Register
+                </NavLink>
+              </li>
+            </Fragment>
+          )}
+        </ul>
+        <ul className="navbar-nav mr-4">
+          {user && (
+            <Fragment>
+              <li className="nav-item">
+                <NavLink to="/profile" className="nav-link">
+                  {user.username}
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink to="/logout" className="nav-link">
+                  Logout
+                </NavLink>
+              </li>
+            </Fragment>
+          )}
         </ul>
       </div>
     </nav>
